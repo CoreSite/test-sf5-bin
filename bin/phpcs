@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+<?php
+
+if (!file_exists(dirname(__DIR__) . '/vendor/bin/phpcs')) {
+    echo "Unable to find the `phpcs` script in `vendor/bin/`.\n";
+    exit(1);
+}
+
+require dirname(__DIR__) . '/vendor/bin/phpcs';
