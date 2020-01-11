@@ -12,8 +12,7 @@ class ProductFixture extends Fixture
     /**
      * @inheritDoc
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
-        // TODO: Implement load() method.
     }
 }
