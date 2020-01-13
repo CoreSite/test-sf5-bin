@@ -2,22 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Fixtures;
+namespace App\Tests\Module;
 
 use App\Entity\Product;
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ProductFixture extends Fixture
+abstract class ServiceTest extends WebTestCase
 {
-    private const PRODUCTS_COUNT = 10;
+    private const PRODUCTS_COUNT = 1000;
 
-    /**
-     * @param ObjectManager $manager
-     * @throws \Exception
-     */
-    public function load(ObjectManager $manager): void
+    protected function productsData(): array
     {
         $products = [];
 
@@ -31,8 +26,10 @@ class ProductFixture extends Fixture
                 ->setUpdatedAt(new \DateTime())
                 ->setEnabled(true)
                 ->setPrice(random_int(1, 5) * 100);
+
+            $products[] = $product;
         }
 
-        $this->addReference('products', $products);
+        return $products;
     }
 }

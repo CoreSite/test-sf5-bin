@@ -8,6 +8,7 @@
         "doctrine/annotations": "^1.8",
         "friendsofphp/php-cs-fixer": "^2.16",
         "ramsey/uuid-doctrine": "^1.5",
+        "rybakit/msgpack": "^0.6.1",
         "slevomat/coding-standard": "^6.0",
         "squizlabs/php_codesniffer": "*",
         "symfony/console": "5.0.*",
@@ -18,14 +19,19 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "symfony/debug-pack": "^1.0",
         "symfony/maker-bundle": "^1.14",
-        "symfony/phpunit-bridge": "^5.0"
+        "symfony/phpunit-bridge": "^5.0",
+        "symfony/profiler-pack": "^1.0"
     },
     "config": {
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": {
+            "php": "7.4.1"
+        }
     },
     "autoload": {
         "psr-4": {
