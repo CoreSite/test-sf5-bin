@@ -8,7 +8,7 @@ use App\Entity\Product;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-abstract class ServiceTest extends WebTestCase
+abstract class AbstractServiceTest extends WebTestCase
 {
     private const PRODUCTS_COUNT = 1000;
 

@@ -6,7 +6,7 @@ namespace App\Tests\Module;
 
 use App\Service\MessagePack\MessagePackService;
 
-class MessagePackServiceTest extends ServiceTest
+class MessagePackAbstractServiceTest extends AbstractServiceTest
 {
     private MessagePackService $messagePackService;
 
