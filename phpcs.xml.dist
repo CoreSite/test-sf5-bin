@@ -219,5 +219,7 @@
     <rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse" />
     <rule ref="SlevomatCodingStandard.Namespaces.MultipleUsesPerLine" />
     <rule ref="SlevomatCodingStandard.Namespaces.UseDoesNotStartWithBackslash" />
-
+    <rule ref="Squiz.Commenting.VariableComment.Missing">
+              <severity>0</severity>
+    </rule>
 </ruleset>

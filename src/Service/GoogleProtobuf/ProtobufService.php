@@ -23,7 +23,8 @@ class ProtobufService
             ->setId($product->getId()->toString())
             ->setTitle($product->getTitle())
             ->setDescription($product->getDescription())
-            ->setPrice($product->getPrice());
+            ->setPrice($product->getPrice())
+            ->setEnabled($product->isEnabled());
 
         return $protoProduct->serializeToString();
     }
@@ -44,7 +45,8 @@ class ProtobufService
             ->setId(Uuid::fromString($protoProduct->getId()))
             ->setTitle($protoProduct->getTitle())
             ->setDescription($protoProduct->getDescription())
-            ->setPrice($protoProduct->getPrice());
+            ->setPrice($protoProduct->getPrice())
+            ->setEnabled($protoProduct->getEnabled());
 
         return $product;
     }

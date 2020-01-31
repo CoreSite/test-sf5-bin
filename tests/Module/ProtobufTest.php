@@ -25,11 +25,8 @@ class ProtobufTest extends AbstractServiceTest
         $product = $products[0];
 
         $packedData = $this->protobufService->packProduct($product);
-        var_dump($packedData);
 
         $unpackedData = $this->protobufService->unpackProduct($packedData);
-
-        //var_dump($unpackedData);
 
         $this->assertEquals($product, $unpackedData);
     }
