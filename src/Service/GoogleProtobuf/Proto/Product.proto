@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package App.Service.GoogleProtobuf.Model;
+
+message Product {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+    float price = 4;
+    bool enabled = 5;
+}

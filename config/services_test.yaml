@@ -28,3 +28,6 @@ services:
 
     App\Service\MessagePack\MessagePackService:
         public: true
+
+    App\Service\GoogleProtobuf\ProtobufService:
+        public: true

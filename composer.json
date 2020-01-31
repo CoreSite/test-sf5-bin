@@ -7,6 +7,7 @@
         "ext-iconv": "*",
         "doctrine/annotations": "^1.8",
         "friendsofphp/php-cs-fixer": "^2.16",
+        "google/protobuf": "^3.11",
         "ramsey/uuid-doctrine": "^1.5",
         "rybakit/msgpack": "^0.6.1",
         "slevomat/coding-standard": "^6.0",

@@ -21,7 +21,7 @@ abstract class AbstractServiceTest extends WebTestCase
             $product
                 ->setId(Uuid::uuid1())
                 ->setTitle(sprintf('Product %d', $i))
-                ->setDescription(sprintf('Product description #%d', $i))
+                ->setDescription(sprintf("Product\ndescription #%d", $i))
                 ->setCreatedAt(new \DateTime())
                 ->setUpdatedAt(new \DateTime())
                 ->setEnabled(true)

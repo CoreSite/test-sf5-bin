@@ -24,9 +24,15 @@ RUN apt-get update && apt-get install -y \
         gnupg2 \
         htop \
         nano \
-        mariadb-client
+        mariadb-client \
+        autoconf \
+        automake \
+        libtool \
+        make \
+        gcc
 
 RUN pecl install mcrypt-1.0.3
+RUN pecl install protobuf-3.11.2
 
 RUN docker-php-ext-install -j$(nproc) pdo_mysql mysqli \
     && docker-php-ext-configure bcmath \
@@ -51,6 +57,18 @@ RUN set -x && curl -sS https://getcomposer.org/installer | php \
 RUN usermod -u ${HOST_UID} www-data && groupmod -g ${HOST_UID} www-data
 RUN chsh -s /bin/bash www-data
 RUN chown -R www-data:www-data /var/www
+
+# protoc
+RUN cd /tmp \
+    && git clone https://github.com/protocolbuffers/protobuf.git \
+    && cd protobuf \
+    && git submodule update --init --recursive \
+    && ./autogen.sh \
+    && ./configure \
+    && make \
+    && make check \
+    && make install \
+    && ldconfig
 
 # ADD php.ini /usr/local/etc/php/conf.d/40-custom.ini
 
