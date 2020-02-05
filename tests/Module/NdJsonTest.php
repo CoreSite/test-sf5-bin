@@ -21,7 +21,7 @@ class NdJsonTest extends AbstractServiceTest
 
     public function testNdJson(): void
     {
-        $products = $this->productsData(1000);
+        $products = $this->productsData(10000);
 
         $this->ndJsonService->pack($this->varDir.'/test.ndjson', $products);
 
