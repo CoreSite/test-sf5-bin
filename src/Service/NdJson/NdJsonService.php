@@ -13,9 +13,18 @@ use React\Stream\WritableResourceStream;
 class NdJsonService
 {
     /**
-     * @param string $filename
-     * @param array  $products
+     * @param resource $resource
+     *
+     * @return Encoder
      */
+    public function openWriteStream($resource): Encoder
+    {
+        $loop = Factory::create();
+        $out = new WritableResourceStream($resource, $loop);
+
+        return new Encoder($out);
+    }
+
     public function pack(string $filename, array $products): void
     {
         $h = fopen($filename, 'wb+');
@@ -34,11 +43,6 @@ class NdJsonService
         $stream->close();
     }
 
-    /**
-     * @param string $filename
-     *
-     * @return array
-     */
     public function unpack(string $filename): array
     {
         $h = fopen($filename, 'rb');

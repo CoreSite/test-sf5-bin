@@ -4,6 +4,8 @@ ARG HOST_UID
 
 VOLUME ["/var/www/html"]
 
+COPY php.ini /usr/local/etc/php/php.ini
+
 RUN apt-get update && apt-get install -y \
         sudo \
         zlib1g-dev \
@@ -24,15 +26,15 @@ RUN apt-get update && apt-get install -y \
         gnupg2 \
         htop \
         nano \
-        mariadb-client \
-        autoconf \
-        automake \
-        libtool \
-        make \
-        gcc
+        mariadb-client
+#        autoconf \
+#        automake \
+#        libtool \
+#        make \
+#        gcc
 
-RUN pecl install mcrypt-1.0.3
-RUN pecl install protobuf-3.11.2
+#RUN pecl install mcrypt-1.0.3
+#RUN pecl install protobuf-3.11.2
 
 RUN docker-php-ext-install -j$(nproc) pdo_mysql mysqli \
     && docker-php-ext-configure bcmath \
@@ -44,8 +46,8 @@ RUN docker-php-ext-install -j$(nproc) pdo_mysql mysqli \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install -j$(nproc) intl opcache pcntl \
     && docker-php-ext-configure calendar --enable-calendar \
-    && docker-php-ext-install -j$(nproc) calendar \
-    && docker-php-ext-enable mcrypt
+    && docker-php-ext-install -j$(nproc) calendar
+#    && docker-php-ext-enable mcrypt
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
@@ -59,16 +61,16 @@ RUN chsh -s /bin/bash www-data
 RUN chown -R www-data:www-data /var/www
 
 # protoc
-RUN cd /tmp \
-    && git clone https://github.com/protocolbuffers/protobuf.git \
-    && cd protobuf \
-    && git submodule update --init --recursive \
-    && ./autogen.sh \
-    && ./configure \
-    && make \
-    && make check \
-    && make install \
-    && ldconfig
+#RUN cd /tmp \
+#    && git clone https://github.com/protocolbuffers/protobuf.git \
+#    && cd protobuf \
+#    && git submodule update --init --recursive \
+#    && ./autogen.sh \
+#    && ./configure \
+#    && make \
+#    && make check \
+#    && make install \
+#    && ldconfig
 
 # ADD php.ini /usr/local/etc/php/conf.d/40-custom.ini
 

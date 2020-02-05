@@ -4,51 +4,32 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class Product
 {
-    /**
-     * @var Uuid
-     */
-    private Uuid $id;
+    public UuidInterface $id;
 
-    /**
-     * @var string
-     */
-    private string $title;
+    public string $title;
 
-    /**
-     * @var string
-     */
-    private string $description;
+    public string $description;
 
-    /**
-     * @var float
-     */
-    private float $price;
+    public float $price;
 
-    /**
-     * @var bool
-     */
-    private bool $enabled;
+    public bool $enabled;
 
-    /**
-     * @var \DateTime
-     */
-    private \DateTime $createdAt;
+    public \DateTime $createdAt;
 
-    /**
-     * @var \DateTime
-     */
-    private \DateTime $updatedAt;
+    public \DateTime $updatedAt;
 
-    public function getId(): Uuid
+    public array $properties = [];
+
+    public function getId(): UuidInterface
     {
         return $this->id;
     }
 
-    public function setId(Uuid $id): Product
+    public function setId(UuidInterface $id): Product
     {
         $this->id = $id;
 

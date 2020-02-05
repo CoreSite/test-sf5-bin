@@ -17,13 +17,14 @@ class DataTransformer
     public static function packProduct(Product $product): array
     {
         return [
-            $product->getId(),
-            $product->getTitle(),
-            $product->getDescription(),
-            $product->getPrice(),
-            $product->getCreatedAt()->format('c'),
-            $product->getUpdatedAt()->format('c'),
-            $product->isEnabled(),
+            $product->id,
+            $product->title,
+            $product->description,
+            $product->price,
+            $product->properties,
+            $product->createdAt->format('c'),
+            $product->updatedAt->format('c'),
+            $product->enabled,
         ];
     }
 
@@ -36,14 +37,14 @@ class DataTransformer
     public static function unpackProduct(array $data): Product
     {
         $product = new Product();
-        $product
-            ->setId(Uuid::fromString($data[0]))
-            ->setTitle($data[1])
-            ->setDescription($data[2])
-            ->setPrice($data[3])
-            ->setCreatedAt(new \DateTime($data[4]))
-            ->setUpdatedAt(new \DateTime($data[5]))
-            ->setEnabled($data[6]);
+        $product->id = Uuid::fromString($data[0]);
+        $product->title = $data[1];
+        $product->description = $data[2];
+        $product->price = $data[3];
+        $product->properties = $data[4];
+        $product->createdAt = new \DateTime($data[5]);
+        $product->updatedAt = new \DateTime($data[6]);
+        $product->enabled = $data[7];
 
         return $product;
     }
