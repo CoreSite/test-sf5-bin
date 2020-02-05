@@ -31,3 +31,9 @@ services:
 
     App\Service\GoogleProtobuf\ProtobufService:
         public: true
+
+    App\Service\StreamingJsonParser\StreamingJsonParserService:
+        public: true
+
+    App\Service\NdJson\NdJsonService:
+        public: true

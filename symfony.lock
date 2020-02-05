@@ -1,4 +1,7 @@
 {
+    "clue/ndjson-react": {
+        "version": "v1.1.0"
+    },
     "composer/semver": {
         "version": "1.5.0"
     },
@@ -92,6 +95,9 @@
             "config/packages/dev/easy_log_handler.yaml"
         ]
     },
+    "evenement/evenement": {
+        "version": "v3.0.1"
+    },
     "friendsofphp/php-cs-fixer": {
         "version": "2.2",
         "recipe": {
@@ -152,8 +158,17 @@
             "config/packages/ramsey_uuid_doctrine.yaml"
         ]
     },
+    "react/event-loop": {
+        "version": "v1.1.1"
+    },
+    "react/stream": {
+        "version": "v1.1.0"
+    },
     "rybakit/msgpack": {
         "version": "v0.6.1"
+    },
+    "salsify/json-streaming-parser": {
+        "version": "v8.1.0"
     },
     "slevomat/coding-standard": {
         "version": "6.0.6"
