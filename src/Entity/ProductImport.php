@@ -6,7 +6,7 @@ namespace App\Entity;
 
 use Ramsey\Uuid\UuidInterface;
 
-class Product
+class ProductImport
 {
     public UuidInterface $id;
 
@@ -29,7 +29,7 @@ class Product
         return $this->id;
     }
 
-    public function setId(UuidInterface $id): Product
+    public function setId(UuidInterface $id): ProductImport
     {
         $this->id = $id;
 
@@ -41,7 +41,7 @@ class Product
         return $this->title;
     }
 
-    public function setTitle(string $title): Product
+    public function setTitle(string $title): ProductImport
     {
         $this->title = $title;
 
@@ -53,7 +53,7 @@ class Product
         return $this->description;
     }
 
-    public function setDescription(string $description): Product
+    public function setDescription(string $description): ProductImport
     {
         $this->description = $description;
 
@@ -65,7 +65,7 @@ class Product
         return $this->price;
     }
 
-    public function setPrice(float $price): Product
+    public function setPrice(float $price): ProductImport
     {
         $this->price = $price;
 
@@ -77,7 +77,7 @@ class Product
         return $this->enabled;
     }
 
-    public function setEnabled(bool $enabled): Product
+    public function setEnabled(bool $enabled): ProductImport
     {
         $this->enabled = $enabled;
 
@@ -89,7 +89,7 @@ class Product
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): Product
+    public function setCreatedAt(\DateTime $createdAt): ProductImport
     {
         $this->createdAt = $createdAt;
 
@@ -101,7 +101,7 @@ class Product
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTime $updatedAt): Product
+    public function setUpdatedAt(\DateTime $updatedAt): ProductImport
     {
         $this->updatedAt = $updatedAt;
 

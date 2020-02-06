@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\MessagePack\TypeTransformer;
 
-use App\Entity\Product;
+use App\Entity\ProductImport;
 use MessagePack\BufferUnpacker;
 use MessagePack\Packer;
 use MessagePack\TypeTransformer\Extension;
@@ -15,13 +15,13 @@ class ProductExtension implements Extension
 
     /**
      * @param Packer  $packer
-     * @param Product $value
+     * @param ProductImport $value
      *
      * @return string|null
      */
     public function pack(Packer $packer, $value): ?string
     {
-        if (!$value instanceof Product) {
+        if (!$value instanceof ProductImport) {
             return null;
         }
 

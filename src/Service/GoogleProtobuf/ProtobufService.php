@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\Service\GoogleProtobuf;
 
-use App\Entity\Product;
+use App\Entity\ProductImport;
 use App\Service\GoogleProtobuf\Model\Product as ProtoProduct;
 use Ramsey\Uuid\Uuid;
 
 class ProtobufService
 {
     /**
-     * @param Product $product
+     * @param ProductImport $product
      *
      * @return string
      * @throws \Exception
      */
-    public function packProduct(Product $product): string
+    public function packProduct(ProductImport $product): string
     {
         $protoProduct = new ProtoProduct();
         $protoProduct
@@ -32,15 +32,15 @@ class ProtobufService
     /**
      * @param string $data
      *
-     * @return Product
+     * @return ProductImport
      * @throws \Exception
      */
-    public function unpackProduct(string $data): Product
+    public function unpackProduct(string $data): ProductImport
     {
         $protoProduct = new ProtoProduct();
         $protoProduct->mergeFromString($data);
 
-        $product = new Product();
+        $product = new ProductImport();
         $product
             ->setId(Uuid::fromString($protoProduct->getId()))
             ->setTitle($protoProduct->getTitle())

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Module;
 
-use App\Entity\Product;
+use App\Entity\ProductImport;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -17,7 +17,7 @@ abstract class AbstractServiceTest extends WebTestCase
         $products = [];
 
         for ($i = 0; $i < $count; ++$i) {
-            $product = new Product();
+            $product = new ProductImport();
             $product
                 ->setId(Uuid::uuid1())
                 ->setTitle(sprintf('Product %d', $i))

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Fixtures;
 
-use App\Entity\Product;
+use App\Entity\ProductImport;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
@@ -22,7 +22,7 @@ class ProductFixture extends Fixture
         $products = [];
 
         for ($i = 0; $i < self::PRODUCTS_COUNT; ++$i) {
-            $product = new Product();
+            $product = new ProductImport();
             $product
                 ->setId(Uuid::uuid1())
                 ->setTitle(sprintf('Product %d', $i))

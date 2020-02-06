@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\Compressor;
 
-use App\Entity\Product;
+use App\Entity\ProductImport;
 
 class CompressorWriter extends Compressor
 {
@@ -24,9 +24,9 @@ class CompressorWriter extends Compressor
     }
 
     /**
-     * @param Product $product
+     * @param ProductImport $product
      */
-    public function add(Product $product): void
+    public function add(ProductImport $product): void
     {
         $data = DataTransformer::packProduct($product);
 

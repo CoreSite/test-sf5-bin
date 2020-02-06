@@ -1,3 +1,2 @@
 GET http://localhost:8081/uploader
-X-Accel-Buffering: no
 ###

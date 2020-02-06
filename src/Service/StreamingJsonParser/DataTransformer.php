@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App\Service\StreamingJsonParser;
 
-use App\Entity\Product;
+use App\Entity\ProductImport;
 use Ramsey\Uuid\Uuid;
 
 class DataTransformer
 {
     /**
-     * @param Product $product
+     * @param ProductImport $product
      *
      * @return array
      */
-    public static function packProduct(Product $product): array
+    public static function packProduct(ProductImport $product): array
     {
         return [
             $product->getId(),
@@ -30,12 +30,12 @@ class DataTransformer
     /**
      * @param array $data
      *
-     * @return Product
+     * @return ProductImport
      * @throws \Exception
      */
-    public static function unpackProduct(array $data): Product
+    public static function unpackProduct(array $data): ProductImport
     {
-        $product = new Product();
+        $product = new ProductImport();
         $product
             ->setId(Uuid::fromString($data[0]))
             ->setTitle($data[1])
