@@ -26,6 +26,8 @@ class DownloadProductsCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $startTime = microtime(true);
+
         $io = new SymfonyStyle($input, $output);
         $filename = $input->getArgument('filename');
 
@@ -42,7 +44,11 @@ class DownloadProductsCommand extends Command
         }
 
         $ndJsonReadTransport->close();
-        $io->success(sprintf('Downloaded %d products', $count));
+
+        $endTime = microtime(true);
+        $executeTime = round($endTime - $startTime, 5);
+
+        $io->success(sprintf('Downloaded %d products (%s ms).', $count, $executeTime));
 
         return 0;
     }

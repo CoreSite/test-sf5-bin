@@ -46,6 +46,8 @@ class UploadProductsCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $startTime = microtime(true);
+
         $io = new SymfonyStyle($input, $output);
         $count = (int) $input->getArgument('count');
 
@@ -71,7 +73,10 @@ class UploadProductsCommand extends Command
 
         $ndJsonReadTransport->close();
 
-        $io->success(sprintf('%d products has been uploaded.', $count));
+        $endTime = microtime(true);
+        $executeTime = round($endTime - $startTime, 5);
+
+        $io->success(sprintf('%d products has been uploaded (%s ms).', $count, $executeTime));
 
         return 0;
     }
