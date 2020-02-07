@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Service\NdJson\NdJsonReadTransport;
 use App\Service\NdJson\NdJsonWriteTransport;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -44,7 +45,7 @@ class FileController extends AbstractController
             $ndJsonReadTransport = new NdJsonReadTransport($file);
             $ndJsonWriteTransport = new NdJsonWriteTransport();
 
-            foreach ($ndJsonReadTransport->readProduct() as $product) {
+            foreach ($ndJsonReadTransport->readProducts() as $product) {
                 $ndJsonWriteTransport->addProduct($product);
             }
             $ndJsonReadTransport->close();
@@ -61,11 +62,20 @@ class FileController extends AbstractController
      * @param Request $request
      *
      * @return Response
+     * @throws \Exception
      *
-     * @Route("/upload", name="upload")
+     * @Route("/upload", methods={"POST"}, name="upload")
      */
     public function upload(Request $request): Response
     {
-        return new Response();
+        $file = $request->getContent(true);
+        $ndJsonReadTransport = new NdJsonReadTransport($file);
+
+        $count = 0;
+        foreach ($ndJsonReadTransport->readProducts() as $product) {
+            ++$count;
+        }
+
+        return new JsonResponse(['status' => 'OK', 'uploadedProductsCount' => $count]);
     }
 }

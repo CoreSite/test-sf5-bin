@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Command;
 
-use App\Service\NdJson\NdJsonWriteTransport;
 use App\Service\ProductService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -50,21 +49,14 @@ class GenProductsCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        $count = $input->getArgument('count');
+        $count = (int) $input->getArgument('count');
 
-        if (!is_numeric($count) || $count <= 0) {
+        if ($count <= 0) {
             $io->error('Count must be greater then 0');
         }
 
-        $file = fopen($this->kernel->getProjectDir().'/var/products_'.$count.'.ndjson', 'wb+');
+        $this->productService->genProductsFile($count);
 
-        $ndJsonWriteTransport = new NdJsonWriteTransport($file);
-
-        for ($i = 0; $i < $count; ++$i) {
-            $ndJsonWriteTransport->addProduct($this->productService->getProduct($i));
-        }
-
-        $ndJsonWriteTransport->close();
         $io->success('OK');
 
         return 0;

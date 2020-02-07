@@ -8,6 +8,7 @@ use App\Service\NdJson\NdJsonReadTransport;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
@@ -19,16 +20,10 @@ class DownloadProductsCommand extends Command
     {
         $this
             ->setDescription('Download NDJSON')
-            ->addArgument('filename', InputArgument::OPTIONAL, 'File name');
+            ->addArgument('filename', InputArgument::OPTIONAL, 'File name')
+            ->addOption('visible', null, InputOption::VALUE_NONE, 'Visible IDs');
     }
 
-    /**
-     * @param InputInterface  $input
-     * @param OutputInterface $output
-     *
-     * @return int
-     * @throws \Exception
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
@@ -39,9 +34,11 @@ class DownloadProductsCommand extends Command
         $ndJsonReadTransport = new NdJsonReadTransport($file);
 
         $count = 0;
-        foreach ($ndJsonReadTransport->readProduct() as $product) {
-            $io->writeln($product->getId()->toString());
-            $count++;
+        foreach ($ndJsonReadTransport->readProducts() as $product) {
+            if ($input->getOption('visible')) {
+                $io->writeln($product->getId()->toString());
+            }
+            ++$count;
         }
 
         $ndJsonReadTransport->close();

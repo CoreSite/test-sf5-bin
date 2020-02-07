@@ -1,7 +1,4 @@
 {
-    "clue/ndjson-react": {
-        "version": "v1.1.0"
-    },
     "composer/semver": {
         "version": "1.5.0"
     },
@@ -95,9 +92,6 @@
             "config/packages/dev/easy_log_handler.yaml"
         ]
     },
-    "evenement/evenement": {
-        "version": "v3.0.1"
-    },
     "friendsofphp/php-cs-fixer": {
         "version": "2.2",
         "recipe": {
@@ -109,9 +103,6 @@
         "files": [
             ".php_cs.dist"
         ]
-    },
-    "google/protobuf": {
-        "version": "v3.11.2"
     },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
@@ -157,18 +148,6 @@
         "files": [
             "config/packages/ramsey_uuid_doctrine.yaml"
         ]
-    },
-    "react/event-loop": {
-        "version": "v1.1.1"
-    },
-    "react/stream": {
-        "version": "v1.1.0"
-    },
-    "rybakit/msgpack": {
-        "version": "v0.6.1"
-    },
-    "salsify/json-streaming-parser": {
-        "version": "v8.1.0"
     },
     "slevomat/coding-standard": {
         "version": "6.0.6"
@@ -277,6 +256,12 @@
             "src/Controller/.gitignore",
             "src/Kernel.php"
         ]
+    },
+    "symfony/http-client": {
+        "version": "v5.0.4"
+    },
+    "symfony/http-client-contracts": {
+        "version": "v2.0.1"
     },
     "symfony/http-foundation": {
         "version": "v5.0.2"

@@ -22,10 +22,20 @@ class NdJsonReadTransport
      * @return \Generator|ProductImport[]|null
      * @throws \Exception
      */
-    public function readProduct(): ?\Generator
+    public function readProducts(): ?\Generator
     {
         while (false !== ($buffer = fgets($this->handle))) {
             yield DataTransformer::unpackProduct($buffer);
+        }
+    }
+
+    /**
+     * @return \Generator|null
+     */
+    public function readProductsAsString(): ?\Generator
+    {
+        while (false !== ($buffer = fgets($this->handle))) {
+            yield $buffer;
         }
     }
 

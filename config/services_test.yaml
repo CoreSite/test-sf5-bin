@@ -26,14 +26,5 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    App\Service\MessagePack\MessagePackService:
-        public: true
-
-    App\Service\GoogleProtobuf\ProtobufService:
-        public: true
-
-    App\Service\StreamingJsonParser\StreamingJsonParserService:
-        public: true
-
-    App\Service\NdJson\NdJsonService:
+    App\Service\ProductService:
         public: true

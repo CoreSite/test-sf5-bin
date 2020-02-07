@@ -5,12 +5,25 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\ProductImport;
+use App\Service\NdJson\NdJsonWriteTransport;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 class ProductService
 {
     private const PRODUCTS_COUNT = 1000;
     private const PROPERTIES_COUNT = 5;
+
+    private KernelInterface $kernel;
+
+    /**
+     * GenProductsCommand constructor.
+     * @param KernelInterface $kernel
+     */
+    public function __construct(KernelInterface $kernel)
+    {
+        $this->kernel = $kernel;
+    }
 
     /**
      * @param int $count
@@ -51,5 +64,23 @@ class ProductService
         }
 
         return $product;
+    }
+
+    /**
+     * @param int $count
+     *
+     * @throws \Exception
+     */
+    public function genProductsFile(int $count): void
+    {
+        $file = fopen($this->kernel->getProjectDir().'/var/products_'.$count.'.ndjson', 'wb+');
+
+        $ndJsonWriteTransport = new NdJsonWriteTransport($file);
+
+        for ($i = 0; $i < $count; ++$i) {
+            $ndJsonWriteTransport->addProduct($this->getProduct($i));
+        }
+
+        $ndJsonWriteTransport->close();
     }
 }
